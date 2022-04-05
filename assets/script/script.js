@@ -9,6 +9,7 @@ var wordArray = selectedWord.split("");
 
 
 var placeFill = [];
+
 for (var i = 0; i < wordArray.length; i++) {
     placeFill.push("_");
 }
@@ -48,9 +49,29 @@ function check (n){
 
     if (wordArray.includes(n)) {
 
+        var meowArray = [];
+
+        for(i=0; i<wordArray.lemgth; i++){
+
+            if (positionArray === null){
+                
+                wordArray.push("_");
+
+            }
+            else{
+                meowArray.push(wordArray[i]);
+
+            }
+        }
+
+        var meowShow = meowArray.join(" ");
+
+        fillBlank.textContent=meowShow;
     }
 
-
-
+    else {
+        return;
+    }
 
 }
+
