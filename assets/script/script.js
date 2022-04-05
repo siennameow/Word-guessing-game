@@ -3,8 +3,11 @@ var fillBlank = document.querySelector("#blank");
 var startBtn = document.querySelector("#start");
 var win = document.querySelector("#win_score");
 var lose = document.querySelector("#lose_score");
+var timeEl = document.querySelector("#time_left");
 var winScore = 0;
 var loseScore = 0;
+var timerLeft = 10;
+
 
 var selectedWordFinal;
 var wordArrayFinal ;
@@ -12,7 +15,7 @@ var wordArrayFinal ;
 var placeFillFinal ;
 
 function init(){
-
+    setTimer();
 var selectedWord = wordSource[Math.floor(Math.random() * wordSource.length)];
 var wordArray = selectedWord.split("");
 var placeFill = []
@@ -31,9 +34,6 @@ placeFillFinal = placeFill
 
 
 document.addEventListener("keydown", function(event){
-    // if (timerCount === 0) {
-    //     return;
-    //   }
 
       var key = event.key.toLowerCase();
       var alphabetNumericCharacters = "abcdefghijklmnopqrstuvwxyz0123456789 ".split("");
@@ -80,14 +80,36 @@ function winGame(){
 
 }
 
-function lose () {
-    if (timeLeft == 0) {
-       loseScore = loseScore +1;
-       lose.textContent = "Losses: " + loseScore;
-       gameOver();
-    }
-}
+// function loseGame () {
+//     if (timeLeft == 0) {
+//        loseScore = loseScore +1;
+//        lose.textContent = "Losses: " + loseScore;
+//     }
+// }
 
 
 startBtn.addEventListener("click",init);
+
+
+function setTimer() {
+    var timeLeft = timerLeft
+   var timer = setInterval(function() {
+      timeLeft--;
+      console.log(timeLeft)
+      timeEl.textContent = timeLeft;
+
+      if (timeLeft >= 0) {
+        if (selectedWordFinal == placeFillFinal.join("") ) {
+          clearInterval(timer);
+          fillBlank.textContent ="You Win!";
+        }
+      }
+      if (timeLeft === 0) {
+        loseScore = loseScore +1;
+        lose.textContent = "Losses: " + loseScore;
+        clearInterval(timer);
+        fillBlank.textContent ="You Lose!";
+      }
+    }, 1000);
+  }
 
