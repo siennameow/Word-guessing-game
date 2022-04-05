@@ -3,57 +3,54 @@ var fillBlank = document.querySelector("#blank");
 var startBtn = document.querySelector("#start");
 
 
-console.log('hello');
-    var selectedWord = wordSource[Math.floor(Math.random() * wordSource.length)];
-    var wordToGuess = selectedWord.split("");
-    console.log(wordToGuess);
-    for (var i = 0; i < wordToGuess.length; i++) {
 
-    var li = document.createElement("li");
-    li.textContent = "_";
-    li.setAttribute("data-index", i);
-    fillBlank.appendChild(li);
+var selectedWord = wordSource[Math.floor(Math.random() * wordSource.length)];
+var wordArray = selectedWord.split("");
+
+
+var placeFill = [];
+for (var i = 0; i < wordArray.length; i++) {
+    placeFill.push("_");
+}
+
+var fillShow = placeFill.join(" ");
+fillBlank.textContent=fillShow;
+
+
+
+
+document.addEventListener("keydown", function(event){
+    // if (timerCount === 0) {
+    //     return;
+    //   }
+      var key = event.key.toLowerCase();
+      var alphabetNumericCharacters = "abcdefghijklmnopqrstuvwxyz0123456789 ".split("");
+    if (alphabetNumericCharacters.includes(key)) {
+     var letterGuessed = event.key;
+    }
+});
+
+
+function correctLetterPosition (n,m){
+     var positionArray =[];
+        var position =m.indexOf(n);
+        while (position !=-1){
+            positionArray.push(position);
+            position=m.indexOf(n,position+1)
+        }
+        return positionArray;
+}
+console.log(correctLetterPosition("e",["a","p","p","l","e"]))
+
+
+
+function check (n){
+
+    if (wordArray.includes(n)) {
+
     }
 
-function init() {
-    console.log('hello');
-    var selectedWord = wordSource[Math.floor(Math.random() * wordSource.length)];
-    var wordToGuess = selectedWord.split("");
-    console.log(wordToGuess);
-    for (var i = 0; i < wordToGuess.length; i++) {
 
-    var li = document.createElement("li");
-    li.textContent = "_";
-    li.setAttribute("data-index", i);
-    fillBlank.appendChild(li);
-        };
-    };
-init();
-// document.addEventListener("keydown", function(event){
-//     if (timerCount === 0) {
-//         return;
-//       }
-//       var key = event.key.toLowerCase();
-//       var alphabetNumericCharacters = "abcdefghijklmnopqrstuvwxyz0123456789 ".split("");
-//     if (alphabetNumericCharacters.includes(key)) {
-//      var letterGuessed = event.key;
-//     }
-// });
 
-// function setTimer() {
-//     timer = setInterval(function() {
-//       timerCount--;
-//       timerElement.textContent = timerCount;
-//       if (timerCount >= 0) {
 
-//         if (isWin && timerCount > 0) {
-//           clearInterval(timer);
-//           winGame();
-//         }
-//       }
-//       if (timerCount === 0) {
-//         clearInterval(timer);
-//         loseGame();
-//       }
-//     }, 1000);
-
+}
