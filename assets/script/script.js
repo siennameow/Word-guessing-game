@@ -1,7 +1,7 @@
 var wordSource =["boolean","array","Object","element","string","var"];
 var fillBlank = document.querySelector("#blank");
 var startBtn = document.querySelector("#start");
-
+var score = 0;
 
 
 var selectedWord = wordSource[Math.floor(Math.random() * wordSource.length)];
@@ -13,11 +13,9 @@ var placeFill = [];
 for (var i = 0; i < wordArray.length; i++) {
     placeFill.push("_");
 }
-
+console.log(selectedWord);
 var fillShow = placeFill.join(" ");
 fillBlank.textContent=fillShow;
-
-
 
 
 document.addEventListener("keydown", function(event){
@@ -28,6 +26,9 @@ document.addEventListener("keydown", function(event){
       var alphabetNumericCharacters = "abcdefghijklmnopqrstuvwxyz0123456789 ".split("");
     if (alphabetNumericCharacters.includes(key)) {
      var letterGuessed = event.key;
+    var newArray = correctLetterPosition(letterGuessed,wordArray);
+    check(letterGuessed,newArray);
+
     }
 });
 
@@ -41,37 +42,27 @@ function correctLetterPosition (n,m){
         }
         return positionArray;
 }
-console.log(correctLetterPosition("e",["a","p","p","l","e"]))
 
 
+function check(n,m){
 
-function check (n){
+        for (i=0; i<wordArray.length; i++){
 
-    if (wordArray.includes(n)) {
-
-        var meowArray = [];
-
-        for(i=0; i<wordArray.lemgth; i++){
-
-            if (positionArray === null){
-                
-                wordArray.push("_");
-
-            }
-            else{
-                meowArray.push(wordArray[i]);
-
+            if (m.includes(i)){ 
+                placeFill[i]=n;
             }
         }
-
-        var meowShow = meowArray.join(" ");
-
-        fillBlank.textContent=meowShow;
-    }
-
-    else {
-        return;
-    }
-
+        var fillShow = placeFill.join(" ");
+        fillBlank.textContent=fillShow;
+        win();
 }
+
+function win(){
+
+    if (selectedWord == placeFill.join("") ){
+        console.log("hello")
+        score =score +1;
+    }
+}
+
 
