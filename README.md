@@ -1,1 +1,1 @@
-# mini-project4
+# Word Guessing Game
