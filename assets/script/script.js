@@ -1,9 +1,12 @@
-var wordSource =["boolean","array","Object","element","string","var"];
+var wordSource =["boolean","array","object","element","string","var"];
 var fillBlank = document.querySelector("#blank");
 var startBtn = document.querySelector("#start");
 var win = document.querySelector("#win_score");
 var lose = document.querySelector("#lose_score");
 var timeEl = document.querySelector("#time_left");
+var resetBtn = document.querySelector("#reset");
+
+
 var winScore = 0;
 var loseScore = 0;
 var timerLeft = 10;
@@ -112,4 +115,11 @@ function setTimer() {
       }
     }, 1000);
   }
+
+function resetScore () {
+    win.textContent = "Wins: 0 ";
+    lose.textContent = "Losses: 0 ";
+}
+
+resetBtn.addEventListener("click",resetScore)
 
